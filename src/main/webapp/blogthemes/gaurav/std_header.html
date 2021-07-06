@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<div class="container">
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" th:href="${url.weblogHome}">Home</a></li>
+                <th:block th:if="${model.weblog.getWeblogCategories().size() > 1}">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a th:class="${model.category == null && model.permalink == null}? 'dropdown-item active' : 'dropdown-item'" th:href="${url.weblogHome}" th:utext="${utils.msg('generic.all')}">xxx</a>
+                            <a th:each="cat : ${model.weblog.weblogCategories}"
+                                th:class="${model.category == cat.name || (model.permalink && model.weblogEntry.category.name == cat.name)}? 'dropdown-item active' : 'dropdown-item'"
+                                th:href="${url.getEntriesURLForCategory(cat.name)}" th:text="${cat.name}">category name</a>
+                        </div>
+                    </li>
+                </th:block>
+                <li th:each="page : ${model.customPages}" class="nav-item" th:classappend="${model.template != null && page.id == model.template.id} ? 'active'">
+                    <a class="nav-link" th:href='${url.getCustomPageURL(page.name)}' th:text="${page.name}">xxx</a>
+                </li>
+                <th:block th:if="${model.isUserBlogPublisher()}">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="${url.getNewEntryURL()}"><span th:text="${utils.msg('navigationBar.newEntry')}">xxx</span></a>
+                    </li>
+                    <li class="nav-item" th:if="${model.isUserBlogOwner()}">
+                        <a class="nav-link" th:href="${url.getConfigURL()}"><span th:text="${utils.msg('navigationBar.settings')}">xxx</span></a>
+                    </li>
+                </th:block>
+                <th:block th:switch="${model.authenticatedUser != null}">
+                    <li class="nav-item" th:case="${true}">
+                        <a class="nav-link" th:href="${url.getLogoutURL()}"><span th:text="${utils.msg('navigationBar.logout')}">xxx</span></a>
+                    </li>
+                    <li class="nav-item" th:case="${false}">
+                        <a class="nav-link" th:href="${url.getLoginURL()}"><span th:text="${utils.msg('navigationBar.login')}">xxx</span></a>
+                    </li>
+                </th:block>
+            </ul>
+            <form method="get" th:action="${url.getSearchURL()}" class="form-inline my-2 my-lg-0">
+                <input type="search" class="form-control mr-sm-2" id="q" name="q" maxlength="255"
+                       placeholder="Search..." value="" pattern=".*\S+.*" required aria-label="Search"/>
+                <button type="submit" id="search-btn" class="btn btn-outline-success my-2 my-sm-0"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+	</div><!-- /.container -->
+</nav>

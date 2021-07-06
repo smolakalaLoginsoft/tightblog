@@ -1,0 +1,21 @@
+NOTICE.txt
+
+COPYRIGHT NOTICES
+
+This product includes:
+
+* Code written by Sun Microsystems, Inc.
+    Copyright 2005 Sun Microsystems, Inc.
+
+* Code written by Dave Johnson for RSS and Atom in Action
+    Copyright 2005 David M Johnson (For RSS and Atom In Action)
+
+OTHER NOTICES
+
+* This product includes code from Apache Roller, licensed under the Apache
+  License Version 2.0.
+
+* Roller includes icons by Mark James (http://www.famfamfam.com/lab/icons)
+
+* Octicon "clippy" (copy to clipboard) icon used:
+  GitHub [MIT (http://opensource.org/licenses/mit-license.php)]

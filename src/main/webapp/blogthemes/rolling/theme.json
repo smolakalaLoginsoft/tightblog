@@ -1,0 +1,29 @@
+{
+  "id": "rolling",
+  "name": "Rolling",
+  "description": "Uses Bootstrap 4.3, features a wider main column suitable for blogs displaying source code.",
+  "previewImagePath": "rolling-sample.png",
+  "templates": [
+    {
+      "type": "stylesheet",
+      "name": "rolling.css",
+      "description": "Stylesheet for Rolling theme",
+      "contentsFile": "rolling.css"
+    },
+    {
+      "type": "weblog",
+      "name": "Weblog",
+      "contentsFile": "weblog.html"
+    },
+    {
+      "type": "custom_internal",
+      "name": "day",
+      "contentsFile": "day.html"
+    },
+    {
+      "type": "custom_internal",
+      "name": "sidebar",
+      "contentsFile": "sidebar.html"
+    }
+  ]
+}

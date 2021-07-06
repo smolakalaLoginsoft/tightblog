@@ -1,0 +1,49 @@
+<div th:class="${model.permalink}? 'daybox'">
+    <div th:each="entry : ${model.weblogEntriesPager.getEntries().get(day)}" class="entryBox" th:id="${entry.anchor}">
+        <h2 class="blogEntryTitle searchable_text">
+            <a th:remove="${model.permalink}? 'tag' : 'none'" th:href="${url.getURL(entry)}" th:utext="${entry.title}">xxx</a>
+        </h2>
+
+        <p class="lead">by <span style="text-transform: capitalize;" th:utext="${entry.creator.screenName}">xxx</span></p>
+
+        <hr>
+          <p>
+              <i class="icon-time"></i>
+              <span th:utext="|Posted on ${utils.formatTemporal(day, utils.msg('macro.weblog.datepattern'))}
+                at ${entry.pubTime != null ? utils.formatTemporal(entry.pubTime, utils.msg('macro.weblog.timepattern')) : utils.msg('macro.weblog.unpublished')}
+                in ${entry.category.name}|">xxx</span>
+          </p>
+        <hr>
+
+        <div class="searchable_text">
+            <th:block th:switch="${model.permalink}">
+                <p th:case="${true}" th:utext="${model.getTransformedText(entry)}">xxx</p>
+                <th:block th:case="${false}">
+                    <th:block th:switch="${!#strings.isEmpty(entry.summary)}">
+                        <th:block th:case="${true}">
+                            <p th:utext="${entry.summary}">xxx</p>
+                            <a class="btn btn-primary" th:href="${url.getURL(entry)}">Read More <i class="icon-angle-right"></i></a>
+                        </th:block>
+                        <p th:case="${false}" th:utext="${model.getTransformedText(entry)}">xxx</p>
+                    </th:block>
+                </th:block>
+            </th:block>
+        </div>
+
+        <p class="entryInfo" style="clear: right" th:with="commentCount = ${entry.commentCount}">
+            <th:block th:if="${model.canSubmitNewComments(entry) || commentCount > 0}">
+                <a th:href="${url.getCommentsURL(entry)}" th:utext="|${utils.msg('macro.weblog.comments')}[${commentCount}]|">xxx</a>
+            </th:block>
+
+            <th:block th:if="${model.isUserBlogPublisher()}">
+                &nbsp;|&nbsp;
+                <a th:href="${url.getEntryEditURL(entry)}" th:utext="${utils.msg('generic.edit')}">xxx</a>
+            </th:block>
+        </p>
+
+        <p th:if="${entry.tags.size() > 0}" class="text-muted" style="clear: right">
+            Tags: <a th:each="tag : ${entry.tags}" class="tagLink" th:href="${url.getEntriesURLForTag(tag.name, model.category)}" th:utext="${tag.name}">xxx</a>
+        </p>
+    </div>
+    <hr>
+</div>

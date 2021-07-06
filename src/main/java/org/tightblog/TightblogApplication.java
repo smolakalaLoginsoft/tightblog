@@ -1,0 +1,39 @@
+/*
+ * Copyright 2018 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.tightblog;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+
+@SpringBootApplication
+// https://docs.spring.io/spring/docs/current/spring-framework-reference/integration.html#cache-annotation-enable
+@EnableCaching
+// Search code for @Scheduled annotations for scheduled tasks
+@EnableScheduling
+// Enable @PreAuthorize, etc., security checks on controller methods
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+// extending SBSI to make deployable as a WAR file
+public class TightblogApplication extends SpringBootServletInitializer {
+
+    public static void main(String[] args) {
+        SpringApplication.run(TightblogApplication.class, args);
+    }
+
+}

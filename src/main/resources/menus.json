@@ -1,0 +1,83 @@
+[
+  {
+    "id": "editor",
+    "tabs": [
+      {
+        "titleKey": "tabbedmenu.weblog",
+        "actionPath": "/tb-ui/app/authoring/",
+        "globalRole": "BLOGGER",
+        "weblogRole": "EDIT_DRAFT",
+        "tabItems": [
+          {
+            "action": "entryAdd",
+            "titleKey": "entryAdd.title",
+            "weblogRole": "EDIT_DRAFT",
+            "subActions": [
+              "entryEdit"
+            ]
+          },
+          {
+            "action": "entries",
+            "titleKey": "entries.title",
+            "weblogRole": "POST"
+          },
+          {
+            "action": "comments",
+            "titleKey": "comments.title",
+            "weblogRole": "POST"
+          },
+          {
+            "action": "categories",
+            "titleKey": "categories.title",
+            "weblogRole": "POST"
+          },
+          {
+            "action": "tags",
+            "titleKey": "generic.tags",
+            "weblogRole": "POST"
+          },
+          {
+            "action": "blogroll",
+            "titleKey": "blogroll.title",
+            "weblogRole": "OWNER"
+          },
+          {
+            "action": "mediaFileView",
+            "titleKey": "mediaFileView.title",
+            "enabledProperty": "media.file.showTab",
+            "weblogRole": "POST",
+            "subActions": [
+              "mediaFileAdd",
+              "mediaFileEdit"
+            ]
+          }
+        ]
+      },
+      {
+        "titleKey": "tabbedmenu.website",
+        "actionPath": "/tb-ui/app/authoring/",
+        "globalRole": "BLOGGER",
+        "weblogRole": "OWNER",
+        "tabItems": [
+          {
+            "action": "weblogConfig",
+            "titleKey": "weblogConfig.title"
+          },
+          {
+            "action": "templates",
+            "titleKey": "templates.title",
+            "enabledProperty": "themes.customtheme.allowed",
+            "subActions": [
+              "templateEdit",
+              "themeEdit"
+            ]
+          },
+          {
+            "action": "members",
+            "titleKey": "members.title"
+          }
+        ]
+      }
+    ]
+  }
+]
